@@ -53,15 +53,7 @@ function App() {
 
   
     }
-
-    
-      
-          
-        
-
-
-       
-    ) 
+  ) 
   }, [cells])
 
 
