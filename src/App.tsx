@@ -1,6 +1,8 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { useEffect, useState } from "react";
 import Cell from "./components/Cell";
+import celebrate from "./assets/celebrate.gif";
+import bg from "./assets/bg.png";
 
 function App() {
 
@@ -17,6 +19,9 @@ function App() {
     setCells(["", "", "", "", "", "", "", "", ""])
   }
 
+  useEffect(()=>{
+    document.body.style.backgroundImage = `url(${bg})`
+  },[])
 
 
   useEffect(() => {
@@ -70,7 +75,9 @@ function App() {
 
 
   return <>
-    {winner && <div className={`overlay ${(winner === "X" || winner === "O") ? "celebrate" : ""}`}>
+    {winner && <div className={`overlay ${(winner === "X" || winner === "O") ? "celebrate" : ""}`}
+    style={{backgroundImage: `url(${celebrate})`}}
+    >
       <button onClick={resetGame}>Play Again !!!</button>
     </div>}
     <header>
