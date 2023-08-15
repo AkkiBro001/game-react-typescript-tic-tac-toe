@@ -19,12 +19,14 @@ body{
   background-image: url("./bg.png");
   background-size: contain;
   color: var(--light-dark-color);
+  position: relative;
+  min-height: 100vh;
 }
 
 .overlay{
   position: absolute;
   width: 100vw;
-  height: 100vh;
+  height: 100%;
   background-color: rgba(0,0,0,0.4);
   z-index: 1000;
   display: flex;
@@ -58,7 +60,7 @@ body{
 header{
   display: flex;
   flex-direction: column;
-  gap: 1em;
+  gap: 0.5em;
   align-items: center;
 }
 
@@ -66,7 +68,15 @@ header{
   text-align: center;
   font-size: 3rem;
   color: var(--dark-color);
+
 }
+
+@media screen and (max-width: 500px){
+  .title{
+    font-size: 2.5rem;
+  }
+}
+
 
 .score{
   display: flex;
@@ -86,6 +96,8 @@ header{
   border-radius: 8px;
   justify-content: space-between;
 }
+
+
 
 .score__X{
   border-bottom: 4px solid var(--secondary-color) !important;
@@ -107,6 +119,7 @@ header{
   width: 5px;
   height: 40px;
   position: relative;
+  transform: translateX(20px);
 }
 
 .score .shape.X::before, .score .shape.X::after{
@@ -267,4 +280,3 @@ header{
 .cell .shape.X::before{
   transform: rotate(-45deg);
 }
-

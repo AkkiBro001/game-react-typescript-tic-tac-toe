@@ -30,24 +30,28 @@ function App() {
       [0, 4, 8],
       [2, 4, 6],
     ]
+    const X_Value:boolean[] = [];
+    const O_Value:boolean[] = [];
 
     WinningPattern.forEach(array => {
       
-      const O_Win = array.every(index => cells[index] === "O")
-      const X_Win = array.every(index => cells[index] === "X")
-      const Draw = !cells.includes("") && cells.every(cell => cell !== "")
+      const Draw = cells.every(cell => cell !== "")
+      O_Value.push(array.every(index => cells[index] === "O"))
+      X_Value.push(array.every(index => cells[index] === "X"))
       
-       
+     
+     
+
 
     
       
-      if(O_Win){
+      if(O_Value.includes(true)){
         setWinner("O")
-        return setCounter(pre => ({ ...pre, O: pre.O + 1 }))
-      } else if (X_Win) {
+        
+      } else if (X_Value.includes(true)) {
           setWinner("X")
-          return setCounter(pre => ({ ...pre, X: pre.X + 1 }))
-      } else if (!cells.includes("") && !O_Win && !X_Win && Draw) {
+          
+      } else if (!cells.includes("") && Draw) {
           return setWinner("Draw")
         }
 
@@ -55,6 +59,14 @@ function App() {
     }
   ) 
   }, [cells])
+
+  useEffect(()=>{
+    if(winner === "O"){
+      setCounter(pre => ({ ...pre, O: pre.O + 1 }))
+    }else if(winner === "X"){
+      setCounter(pre => ({ ...pre, X: pre.X + 1 }))
+    }
+  }, [winner])
 
 
   return <>
@@ -103,7 +115,7 @@ function App() {
         <span>is winner</span>
       </div> : winner === "X" ?
         <div className="score" style={{ display: "flex", alignItems: "center", gap: "0.5em" }}>
-          <span className="shape X" style={{ transform: "translateY(15%)" }}></span>
+          <span className="shape X" style={{ transform: "translateY(0%)" }}></span>
           <span>is winner</span>
         </div> : winner === "Draw" ? <div className="score" style={{ display: "flex", alignItems: "center" }}>
           <span>Match Draw</span>
